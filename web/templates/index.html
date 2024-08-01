@@ -3,8 +3,19 @@
 {% block title %}INDEX{% endblock %}
 
 {% block content %}
-    Contenido
+<div class="container">
+    <div class="row" id="contenedor_flanes">
+        {% for flan in flanes %}
+            <div class="col-md-3" id="columna_flanes">
+                <div class="card" id="card_flanes">
+                    <img src="{{ flan.image_url }}" class="card-img-top" alt="{{ flan.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ flan.name }}</h5>
+                        <p class="card-text">{{ flan.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
-
-
-

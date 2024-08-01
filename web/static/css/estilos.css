@@ -8,6 +8,31 @@
     background-color: var(--secondary-flan-color);
 }
 
+#contenedor_flanes {
+    margin-bottom: 50px;
+}
+
+#card_flanes{
+    margin-bottom: 20px;
+}
+
+#card_flanes {
+    height: 400px; /* Aumenta la altura de las tarjetas */
+}
+
+#card_flanes .card-img-top {
+    height: 70%; /* Ajusta la altura de la imagen dentro de la tarjeta */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio */
+}
+
+#card_flanes .card-body {
+    height: 30%; /* Ajusta el espacio para el contenido textual */
+}
+
+#columna_flanes{
+    padding: 0 15px;
+}
+
 
 * {
     font-family: 'cabin';
