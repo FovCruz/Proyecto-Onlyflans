@@ -1,23 +1,69 @@
 :root {
-    --primary-flan-color: #7076cf;
-    --secondary-flan-color: #CFBB70;
-    --base-flan-color: #71738F;
+    --azul-flan-color: #7076cf;
+    --secondary-flan-color: #ffd4c0;
+    --letras-color: #fff9f6;
+    --light-grey: #6060604a;
+    --dark-grey: #2a2a2ada;
+    
 }
 
-.header-color {
-    background-color: var(--secondary-flan-color);
+* {
+    font-family: 'cabin';
+    margin: 0;
+    padding: 0;
 }
 
-#contenedor_flanes {
-    margin-bottom: 50px;
+header {
+    text-align: center;
+    margin: 20px 0;
 }
 
-#card_flanes{
-    margin-bottom: 20px;
+/* NAVBAR */
+#navbarNavAltMarkup {
+    background-color: var(--azul-flan-color);
+    padding: 15px 5px;
+    border-radius: 5px 5px 2px 2px;
 }
 
+.navbar-nav .nav-link {
+    color: var(--letras-color);
+    font-weight: 400;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--secondary-flan-color);
+}
+
+/* .navbar-toggler {
+    border: 1px solid white;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+} */
+
+.navbar-nav a {
+    color:var(--letras-color);
+}
+.navbar{
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--dark-grey);
+    padding-top: 15px;
+}
+
+/* CARDS */
 #card_flanes {
-    height: 400px; /* Aumenta la altura de las tarjetas */
+    margin: 15px 0;
+    height: 400px;
 }
 
 #card_flanes .card-img-top {
@@ -25,159 +71,48 @@
     object-fit: cover; /* Asegura que la imagen cubra el espacio */
 }
 
-#card_flanes .card-body {
-    height: 30%; /* Ajusta el espacio para el contenido textual */
-}
-
-#columna_flanes{
-    padding: 0 15px;
-}
-
-
-* {
-    font-family: 'cabin';
-}
-
-.mifondo {
-    background-color: #373A3C;
-}
-
-.contenedor-principal {
-    margin-top: 2%;
-    padding: 5% 15% 0 15%;
-}
-
-.contenedor-2 {
-    margin-top: 2%;
-    padding: 0% 8%;
-}
-
-h1 {
-    font-size: 40px;
-    text-align: center;
-    font-weight: bold;
-    color: #373a3c;
-    padding-top: 13px;
-}
-
-h1.espacio {
-    width: 425px;   
-}
-
+/* LINEAS */
 hr {
-    margin: 5% 0;
-    height: 1pt;
-    background-color: #000000 !important;
-    opacity: 1 !important;
+    margin: 1px;
+    height: 0,5pt;
+    color:var(--light-grey) !important;
+    opacity: 1;
 }
 
-.borde-bot{
-    border-bottom: 2px solid;
-    width: 215px;
-    margin-bottom: 5%;
+/* FORMULARIO */
+form { /* caja de formulario*/
+    margin-top: 20px;
+}
+#img-form{ /* img col derecha*/
+    width: 60%;
+}
+.custom-label{ /*clases de labels personalizados */
+    margin: 100px !important;
+}
+.form-control { /*clases de widgets personalizados */
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    background-color: #ffebe2;
+}
+textarea.form-control {
+    resize: none;
+    height: 25%
 }
 
-
-.sep-5{
-    margin: 5% 0;
+/* BOTONES */
+.btn-azul {
+    margin: 15px 0;
 }
 
-.carousel-indicators {
-    margin-bottom: 0rem !important;
-
-    li.circulo {
-        margin-top: 80px;
-        width: 15px;
-        height: 15px;
-        background-color: #333a40;
-        border-radius: 50%;
-    }
-}
-
-
-.navbar-toggler {
-    border: 1px solid white;
-}
-
-.navbar-toggler-icon {
-    filter: invert(1);
-}
-
-a.navbar-brand {
-    width: 137px;
-    height: 46px;
-    font-size: 37px;
-    font-family: "Lobster", cursive;
+/* FOOTER */
+footer {
     text-align: center;
-    padding: 0;
-    margin: 0;
-    color: #ffffff;
+    background-color: var(--azul-flan-color);
+    padding: 20px 0;
+    border-radius: 2px 2px 0 0;
+    color: var(--letras-color);
+    font-weight: 400;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
 }
-
-.navbar-nav a {
-    color: white;
-}
-
-.newsletter-section {
-    background-color: #DC3545;
-    color: white;
-    padding: 17%;
-    /* Ajusta según sea necesario */
-}
-
-.transparent-button {
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-    padding: 10px 40px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-.transparent-button:hover {
-    background-color: white;
-    color: #DC3545;
-}
-
-.fondo-pie {
-    background-color: #373A3C;
-
-}
-
-.newsletter-section h3 span {
-
-    width: 137px;
-    height: 46px;
-    font-size: 30px;
-    font-family: "Lobster", cursive;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-}
-
-
-.newsletter-section h3 span {
-
-    width: 137px;
-    height: 46px;
-    font-size: 30px;
-    font-family: "Lobster", cursive;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-}
-
-.fondo-pie span {
-    width: 137px;
-    height: 46px;
-    font-size: 37px;
-    font-family: "Lobster", cursive;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    color: #ffffff;
-}
-
-
-
-

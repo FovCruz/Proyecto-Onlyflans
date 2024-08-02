@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block content %}
+<h1>Contacto</h1>
+<hr>
+
+<div class="row">
+    <div class="col-6">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.customer_email.label_tag }}
+                {{ form.customer_email }}
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.customer_name.label_tag }}
+                {{ form.customer_name }}
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.message.label_tag }}
+                {{ form.message }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-azul">Enviar</button>
+        </form>
+    </div>
+
+    <div class="col-6">
+        <center>
+            <img id="img-form"
+                src="https://images.vexels.com/media/users/3/134904/isolated/preview/55500571b8176366dd4298b925235cb2-icono-de-soporte-de-contacto-3d.png?w=360"
+                alt="">
+        </center>
+    </div>
+</div>
+{% endblock %}

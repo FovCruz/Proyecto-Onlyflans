@@ -1,8 +1,22 @@
 {% extends "base.html" %}
 
 
-{% block title %}WELCOME{% endblock %}
+{% block title %}Bienvenido{% endblock %}
 
 {% block content %}
-    Bienvenido cliente
+<h1>Productos</h1>
+<hr>
+<div class="row">
+    {% for flan in flanes %}
+    <div class="col-md-3">
+        <div class="card" id="card_flanes">
+            <img src="{{ flan.image_url }}" class="card-img-top" alt="{{ flan.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ flan.name }}</h5>
+                <p class="card-text">{{ flan.description }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

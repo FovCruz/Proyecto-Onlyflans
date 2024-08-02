@@ -1,7 +1,62 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}ABOUT{% endblock %}
+{% block title %}Acerca{% endblock %}
 
 {% block content %}
-    Acerca
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Acerca de OnlyFlans</h1>
+    <hr>
+    <br>
+    
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <h2>Nuestra Historia</h2>
+            <p>OnlyFlans nació de la pasión de un grupo de amigos por los postres y la repostería. Fascinados por la versatilidad y el sabor del flan, decidieron crear un espacio donde pudieran compartir su amor por este postre y ofrecer a las personas la posibilidad de disfrutar de diferentes variedades y sabores. Cada flan que ofrecemos está inspirado en recetas tradicionales, pero con un toque moderno que los hace únicos.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'img/historia.png' %}" class="img-fluid rounded" alt="Nuestra historia">
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6 order-md-2">
+            <h2>Qué Ofrecemos</h2>
+            <p>En OnlyFlans, encontrarás una amplia gama de flanes que se adaptan a todos los gustos y preferencias. Desde el clásico flan de vainilla hasta innovaciones como el flan de chocolate amargo, flan de coco, y opciones veganas y sin gluten para aquellos con necesidades dietéticas específicas. Cada flan es elaborado cuidadosamente por nuestros expertos reposteros, utilizando ingredientes frescos y de alta calidad para garantizar un sabor inigualable.</p>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="{% static 'img/ofrecemos.png' %}" class="img-fluid rounded" alt="Qué ofrecemos">
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <h2>Nuestro Compromiso</h2>
+            <p>Nos enorgullece ofrecer productos que no solo son deliciosos, sino también elaborados de manera ética y sostenible. En OnlyFlans, nos comprometemos a utilizar ingredientes de origen responsable y a minimizar nuestro impacto ambiental. Creemos en la transparencia y en mantener altos estándares de calidad en todos nuestros productos.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'img/compromiso.png' %}" class="img-fluid rounded" alt="Nuestro compromiso">
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6 order-md-2">
+            <h2>Cómo Comprar</h2>
+            <p>Comprar en OnlyFlans es sencillo y cómodo. Nuestra tienda en línea está diseñada para ofrecer una experiencia de compra fluida y segura. Puedes explorar nuestro catálogo de productos, leer descripciones detalladas y ver fotos de alta calidad de cada flan. Una vez que hayas seleccionado tus favoritos, simplemente añádelos al carrito, procede al pago y selecciona la opción de entrega que más te convenga. Ofrecemos opciones de entrega rápida y también la posibilidad de programar entregas en fechas futuras para eventos especiales.</p>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="{% static 'img/como_comprar.png' %}" class="img-fluid rounded" alt="Cómo comprar">
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <h2>Únete a Nuestra Comunidad</h2>
+            <p>En OnlyFlans, no solo vendemos flanes, sino que también nos esforzamos por construir una comunidad de amantes de este delicioso postre. Te invitamos a seguirnos en nuestras redes sociales, donde compartimos recetas, consejos de repostería, y las últimas novedades sobre nuestros productos. También puedes suscribirte a nuestro boletín de noticias para recibir ofertas exclusivas y estar al tanto de nuestras promociones especiales.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'img/comunidad.webp' %}" class="img-fluid rounded" alt="Únete a nuestra comunidad">
+        </div>
+    </div>
+</div>
 {% endblock %}
