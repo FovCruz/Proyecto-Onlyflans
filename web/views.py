@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Flanes
-from .forms import ContactFormForm
+from .models import Flan
+from .forms import ContactFormForm, UsuarioForm
 from django.http import HttpResponse
 
 """ def index(request):
@@ -15,7 +15,7 @@ def pagina(request):
 def exito(request):
     return render(request, 'form_exito.html')
 
-# DEFINE VISTA QUE COMPRUEBA EL TIPO DE PETICION HTTP DEL MODELO CONTACTOFORM Y COMPRUEBA SI ES VALIDO,SI LO ES, LO ENVIA A LA BD Y REDIRIGE A EL HTML ""
+#COMPRUEBA EL TIPO DE PETICION HTTP DEL MODELO CONTACTOFORM Y COMPRUEBA SI ES VALIDO,SI LO ES, LO ENVIA A LA BD Y REDIRIGE A EL HTML ""
 def contacto(request):
     if request.method == 'POST':
         form = ContactFormForm(request.POST) # crea una instancia form y la pobla con la data del request. 
@@ -27,10 +27,9 @@ def contacto(request):
     return render(request, 'contacto.html', {'form': form}) #si no hay un formulario valido, renderiza el contacto.html
 
 
-
 # Obtener los flanes publicos
 def index(request):
-    flanes_publicos = Flanes.objects.filter(is_private=False)
+    flanes_publicos = Flan.objects.filter(is_private=False)
     context = {
         'flanes': flanes_publicos
     }
@@ -38,8 +37,25 @@ def index(request):
 
 # Obtener los flanes privados
 def welcome(request):
-    flanes_privados = Flanes.objects.filter(is_private=True)
+    #flanes_privados = Flan.objects.filter(is_private=True)
+    flanes_privados = Flan.objects.all()
     context = {
         'flanes': flanes_privados
     }
     return render(request, 'welcome.html', context)
+
+
+
+# AGREGAR USUARIO
+def agregar_usuario(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            usuario = form.save(commit=False) #queda en stand by y no se guarda aun en la bd
+            usuario.set_clave(form.cleaned_data['clave'])
+            usuario.save()
+            return redirect('/exito') #redirige a la vista exito que lleva a form_exito.html
+
+    else:
+        form = UsuarioForm()
+    return render(request, 'agregar_usuario.html', {'form': form})

@@ -25,11 +25,14 @@ header {
     border-radius: 5px 5px 2px 2px;
 }
 
-.navbar-nav .nav-link {
+.navbar-nav .nav-link, #nav_welcome{
     color: var(--letras-color);
     font-weight: 400;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
+}
+#nav_welcome{
+    margin: 0 15px;
 }
 
 .navbar-nav .nav-link:hover {
@@ -65,11 +68,18 @@ h1 {
     margin: 15px 0;
     height: 400px;
 }
-
 #card_flanes .card-img-top {
     height: 70%; /* Ajusta la altura de la imagen dentro de la tarjeta */
     object-fit: cover; /* Asegura que la imagen cubra el espacio */
 }
+.card-title {
+    text-align: center;
+    font-weight: bold;
+}
+.card-text {
+    text-align: justify;
+}
+
 
 /* LINEAS */
 hr {
@@ -116,3 +126,4 @@ footer {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
 }
+

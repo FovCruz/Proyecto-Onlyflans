@@ -1,14 +1,14 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import ContactForm #se importa la clase ContactForm desde models.py (alojado en app web)
+from .models import ContactForm, UsuarioForm
 
-
-#CLASE PARA CREAR FORMULARIOS
+# CLASE PARA CONFIGURAR FORMS DE CONTACTO
 class ContactFormForm(forms.ModelForm):
     class Meta:
         model = ContactForm
-        fields = ['customer_email', 'customer_name', 'message']
+        fields = "__all__"  # traer todos los campos
+        # fields = ['customer_email', 'customer_name', 'message'] # traer campos específicos
         widgets = {
             'customer_email': forms.EmailInput(attrs={'class': 'form-control'}),
             'customer_name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -25,14 +25,31 @@ class ContactFormForm(forms.ModelForm):
             'message': {'class': 'custom-label'},
         }
 
-
-
-
-
+# CLASE PARA CONFIGURAR FORMS DE REGISTRO DE USUARIOS
+class UsuarioForm(forms.ModelForm):
+    class Meta:
+        model = UsuarioForm
+        fields = "__all__"  # traer todos los campos
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
+            'fecha_nacimiento': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'autocomplete': 'off'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
+            'clave': forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
+        }
+        labels = {
+            'email': 'Correo',
+            'nombre': 'Nombre',
+            'fecha_nacimiento': 'Fecha de Nacimiento',
+        }
+        label_attrs = {
+            'email': {'class': 'custom-label'},
+            'nombre': {'class': 'custom-label'},
+            'fecha_nacimiento': {'class': 'custom-label'},
+        }
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    #clase interna de django proporciona datos o configuracion adicional#
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']

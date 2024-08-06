@@ -2,9 +2,19 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-link" href="{% url 'index' %}">Inicio</a>
-      <a class="nav-link" href="{% url 'welcome' %}">Bienvenido</a>
       <a class="nav-link" href="{% url 'about' %}">Acerca</a>
       <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
     </div>
+
+    {% if user.is_authenticated %}
+    <div class="ms-auto">
+      <p id="nav_welcome">Bienvenido/a {{ user.get_username }}</p>
+      <a class="nav-link" href="{% url 'welcome' %}">Bienvenido</a>
+      <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+    </div>
+    {% else %}
+      <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+      <a class="nav-link" href="{% url 'agregar_usuario' %}">Registro</a>
+    {% endif %}
   </div>
 </nav>

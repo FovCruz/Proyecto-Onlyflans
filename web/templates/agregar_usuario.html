@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<h1>Registrar usuario</h1>
+<hr>
+
+<div class="row">
+    <div class="col-6">
+        <form method="POST">
+
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.nombre.label_tag }}
+                {{ form.nombre }}
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.fecha_nacimiento.label_tag }}
+                {{ form.fecha_nacimiento }}
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.clave.label_tag }}
+                {{ form.clave }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-azul">Enviar</button>
+    
+        </form>
+    </div>
+
+    <div class="col-6">
+        <center>
+            <img id="img-form"
+                src="https://images.vexels.com/media/users/3/134904/isolated/preview/55500571b8176366dd4298b925235cb2-icono-de-soporte-de-contacto-3d.png?w=360"
+                alt="">
+        </center>
+    </div>
+</div>
+{% endblock %}

@@ -3,15 +3,44 @@
 {% block title %}Registro exitoso{% endblock %}
 
 {% block content %}
-<h1>
-    <center>
+<center>
+    <h1>
         <b>Gracias por contactarte con OnlyFlans,<br>
             te responderemos en breve</b>
-            <br>
-            <a href="{% url 'index' %}" class="btn btn-primary">Volver al Inicio</a>
-            <br style="margin: 20px 0;">
-        <img src="https://static-00.iconduck.com/assets.00/success-icon-512x512-qdg1isa0.png" alt="Enviado correctamente" style="height: 200px;">
-        <hr style="margin:4% ;">
-    </center>
-</h1>
+    </h1>
+    <br>
+    <p>Serás redirigido automáticamente al inicio en: <b><span id="countdown">10</span> segundos.</p></b>
+    <p>Si la redirección no ocurre automáticamente, <a href="{% url 'index' %}">haz clic aquí</a>.</p>
+
+    <img src="https://static-00.iconduck.com/assets.00/success-icon-512x512-qdg1isa0.png" alt="Enviado correctamente"
+        style="height: 200px;">
+    <hr style="margin:1% ;">
+    <a href="{% url 'index' %}" class="btn btn-primary">Volver a la página de Inicio</a>
+    <br style="margin: 20px 0;">
+</center>
+
+
+
+<script>
+    // Función para manejar la redirección automática con contador
+    function startCountdown() {
+        var countdownElement = document.getElementById('countdown');
+        var countdown = 10; // Tiempo en segundos para la redirección
+
+        // Actualiza el contador cada segundo
+        var interval = setInterval(function () {
+            countdownElement.textContent = countdown;
+            countdown--;
+
+            // Redirige al llegar a 0
+            if (countdown < 0) {
+                clearInterval(interval);
+                window.location.href = "{% url 'index' %}";
+            }
+        }, 1000);
+    }
+
+    // Inicia el contador cuando la página esté cargada
+    window.onload = startCountdown;
+</script>
 {% endblock %}
