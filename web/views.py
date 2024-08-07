@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import Flan
 from .forms import ContactFormForm, UsuarioForm
-from django.http import HttpResponse
+#from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from .forms import RegistroForm
+
 
 """ def index(request):
     return render(request, 'index.html') """
@@ -36,26 +41,27 @@ def index(request):
     return render(request, 'index.html', context)
 
 # Obtener los flanes privados
+@login_required
 def welcome(request):
     #flanes_privados = Flan.objects.filter(is_private=True)
-    flanes_privados = Flan.objects.all()
+    #mostrar_todos hace que muestre todos los productos (flanes) que estan en la bd
+    mostrar_todos = Flan.objects.all()
     context = {
-        'flanes': flanes_privados
+        'flanes': mostrar_todos
     }
     return render(request, 'welcome.html', context)
 
-
-
 # AGREGAR USUARIO
-def agregar_usuario(request):
+def registro_usuario(request):
     if request.method == 'POST':
-        form = UsuarioForm(request.POST)
+        form = RegistroForm(request.POST)
         if form.is_valid():
-            usuario = form.save(commit=False) #queda en stand by y no se guarda aun en la bd
-            usuario.set_clave(form.cleaned_data['clave'])
-            usuario.save()
+            #usuario = form.save(commit=False) #queda en stand by y no se guarda aun en la bd
+            #usuario.set_clave(form.cleaned_data['clave'])
+            #usuario.save()
+            user = form.save()
+            login(request, user)
             return redirect('/exito') #redirige a la vista exito que lleva a form_exito.html
-
     else:
-        form = UsuarioForm()
-    return render(request, 'agregar_usuario.html', {'form': form})
+        form = RegistroForm()
+    return render(request, 'registration/registro_usuario.html', {'form': form})

@@ -1,43 +1,43 @@
-{% extends "base.html" %}
+{% extends "parts/base.html" %}
 
-{% block title %}Registro{% endblock %}
+{% block title %}Registro de Usuarios{% endblock %}
 
 {% block content %}
-<h1>Registrar usuario</h1>
+<h1>Registro de Usuarios</h1>
 <hr>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6 mb-3">
         <form method="POST">
-
             {% csrf_token %}
-            <div class="form-group">
-                {{ form.nombre.label_tag }}
-                {{ form.nombre }}
+
+            <div class="form-group mb-3">
+                {{ form.username.label_tag }}
+                {{ form.username }}
             </div>
-            <br>
+
             <div class="form-group">
                 {{ form.email.label_tag }}
                 {{ form.email }}
             </div>
+            
             <br>
             <div class="form-group">
-                {{ form.fecha_nacimiento.label_tag }}
-                {{ form.fecha_nacimiento }}
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
             </div>
             <br>
             <div class="form-group">
-                {{ form.clave.label_tag }}
-                {{ form.clave }}
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
             </div>
             <button type="submit" class="btn btn-primary btn-azul">Enviar</button>
-    
         </form>
     </div>
 
-    <div class="col-6">
+    <div class="col-12 col-md-6 d-none d-md-flex align-items-center justify-content-center">
         <center>
-            <img id="img-form"
+            <img id="img-form" class="img-fluid"
                 src="https://images.vexels.com/media/users/3/134904/isolated/preview/55500571b8176366dd4298b925235cb2-icono-de-soporte-de-contacto-3d.png?w=360"
                 alt="">
         </center>

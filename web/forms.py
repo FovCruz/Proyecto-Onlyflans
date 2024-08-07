@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import ContactForm, UsuarioForm
 
-# CLASE PARA CONFIGURAR FORMS DE CONTACTO
+# CLASE PARA CONFIGURAR FORMS DE CONTACTO 
 class ContactFormForm(forms.ModelForm):
     class Meta:
         model = ContactForm
@@ -25,7 +25,7 @@ class ContactFormForm(forms.ModelForm):
             'message': {'class': 'custom-label'},
         }
 
-# CLASE PARA CONFIGURAR FORMS DE REGISTRO DE USUARIOS
+# CLASE PARA CONFIGURAR FORMS DE REGISTRO DE USUARIOS 
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = UsuarioForm
@@ -40,6 +40,7 @@ class UsuarioForm(forms.ModelForm):
             'email': 'Correo',
             'nombre': 'Nombre',
             'fecha_nacimiento': 'Fecha de Nacimiento',
+            'clave': 'Contraseña'
         }
         label_attrs = {
             'email': {'class': 'custom-label'},
@@ -47,9 +48,19 @@ class UsuarioForm(forms.ModelForm):
             'fecha_nacimiento': {'class': 'custom-label'},
         }
 
-class RegisterForm(UserCreationForm):
+class RegistroForm(UserCreationForm):
+
     email = forms.EmailField(required=True)
     
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+    
+    def __init__(self, *args, **kwargs):
+        super(RegistroForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
+        self.fields['email'].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
+
+

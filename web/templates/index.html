@@ -1,18 +1,22 @@
-{% extends "base.html" %}
+{% extends "parts/base.html" %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Productos</h1>
+
+<h1>Productos Públicos</h1>
 <hr>
 <div class="row">
     {% for flan in flanes %}
-    <div class="col-md-3" >
+    <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-3">
         <div class="card" id="card_flanes">
             <img src="{{ flan.image_url }}" class="card-img-top" alt="{{ flan.name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ flan.name }}</h5>
                 <p class="card-text">{{ flan.description }}</p>
+                <p class="card-text">
+                    <small class="text-body-secondary">Last updated 3 mins ago</small>
+                </p>
             </div>
         </div>
     </div>

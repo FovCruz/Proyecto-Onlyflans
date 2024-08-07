@@ -4,11 +4,10 @@
     --letras-color: #fff9f6;
     --light-grey: #6060604a;
     --dark-grey: #2a2a2ada;
-    
 }
 
 * {
-    font-family: 'cabin';
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -19,20 +18,15 @@ header {
 }
 
 /* NAVBAR */
-#navbarNavAltMarkup {
-    background-color: var(--azul-flan-color);
-    padding: 15px 5px;
-    border-radius: 5px 5px 2px 2px;
-}
-
-.navbar-nav .nav-link, #nav_welcome{
+.navbar-nav .nav-link, #nav_welcome,.btn_sessions {
     color: var(--letras-color);
     font-weight: 400;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
 }
-#nav_welcome{
-    margin: 0 15px;
+  
+
+#welcome_user{
+    color: var(--dark-grey);
 }
 
 .navbar-nav .nav-link:hover {
@@ -53,6 +47,7 @@ header {
 .navbar{
     margin: 0;
     padding: 0;
+    background-color: var(--azul-flan-color);
 }
 
 h1 {
@@ -65,9 +60,10 @@ h1 {
 
 /* CARDS */
 #card_flanes {
-    margin: 15px 0;
+    margin: 0;
     height: 400px;
 }
+
 #card_flanes .card-img-top {
     height: 70%; /* Ajusta la altura de la imagen dentro de la tarjeta */
     object-fit: cover; /* Asegura que la imagen cubra el espacio */
@@ -80,13 +76,12 @@ h1 {
     text-align: justify;
 }
 
-
 /* LINEAS */
 hr {
-    margin: 1px;
-    height: 0,5pt;
-    color:var(--light-grey) !important;
-    opacity: 1;
+    border-top: 1px solid #313131;
+}
+#menu-line {
+    border-top: 1px solid var(--letras-color);
 }
 
 /* FORMULARIO */
@@ -123,7 +118,26 @@ footer {
     border-radius: 2px 2px 0 0;
     color: var(--letras-color);
     font-weight: 400;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
 }
 
+/* MEDIAS QUERIES*/
+
+/* #card_flanes reduce la letra y elimina la altura de las cards*/
+@media (max-width: 991.98px) {
+    #card_flanes {
+      height: auto !important;
+}
+.card-title,
+.card-text {
+  font-size: 0.875rem;
+}
+}
+
+/* espacio entre los botones iniciar sesion y registro */
+@media (max-width: 575.98px) {
+    .sm-margin {
+        margin-bottom: 0.5rem !important;
+    }
+  }
+  

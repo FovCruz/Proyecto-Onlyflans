@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "parts/base.html" %}
 
 {% block title %}Contacto{% endblock %}
 
@@ -7,13 +7,15 @@
 <hr>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6 mb-3">
         <form method="POST">
             {% csrf_token %}
+
             <div class="form-group">
                 {{ form.customer_email.label_tag }}
                 {{ form.customer_email }}
             </div>
+
             <br>
             <div class="form-group">
                 {{ form.customer_name.label_tag }}
@@ -28,9 +30,9 @@
         </form>
     </div>
 
-    <div class="col-6">
+    <div class="col-12 col-md-6 d-none d-md-flex align-items-center justify-content-center">
         <center>
-            <img id="img-form"
+            <img id="img-form" class="img-fluid"
                 src="https://images.vexels.com/media/users/3/134904/isolated/preview/55500571b8176366dd4298b925235cb2-icono-de-soporte-de-contacto-3d.png?w=360"
                 alt="">
         </center>

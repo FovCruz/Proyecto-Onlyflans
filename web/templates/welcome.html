@@ -1,19 +1,30 @@
-{% extends "base.html" %}
+{% extends "parts/base.html" %}
 
-
-{% block title %}Bienvenido{% endblock %}
+{% block title %}Bienvenid@ {{ user.get_username }}{% endblock %}
 
 {% block content %}
-<h1>Productos</h1>
+
+<div class="container text-white bg-dark p-4 mt-2 rounded">
+    <p class="fs-3">Bienvenid@ <span class="text-capitalize">{{ user.get_username }}</span></p>
+    <p>Tenemos una lista de productos exclusivos para ti. ¿Quieres conocer más?</p>
+    <button class="btn btn-outline-light">Descubrir más</button>
+</div>
+
+
+
+<h1>Productos Preferenciales</h1>
 <hr>
 <div class="row">
     {% for flan in flanes %}
-    <div class="col-md-3">
+    <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-3">
         <div class="card" id="card_flanes">
             <img src="{{ flan.image_url }}" class="card-img-top" alt="{{ flan.name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ flan.name }}</h5>
                 <p class="card-text">{{ flan.description }}</p>
+                <p class="card-text">
+                    <small class="text-body-secondary">Last updated 3 mins ago</small>
+                </p>
             </div>
         </div>
     </div>
