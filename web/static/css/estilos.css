@@ -1,9 +1,10 @@
 :root {
-    --azul-flan-color: #7076cf;
+    --azul-flan-color: #031633;
     --secondary-flan-color: #ffd4c0;
     --letras-color: #fff9f6;
     --light-grey: #6060604a;
     --dark-grey: #2a2a2ada;
+    --yellow-warning: #ffc107;
 }
 
 * {
@@ -12,42 +13,82 @@
     padding: 0;
 }
 
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    max-width: 85%;
+    margin-top: 1rem;
+}
+
 header {
-    text-align: center;
-    margin: 20px 0;
+    margin: 0;
 }
 
 /* NAVBAR */
-.navbar-nav .nav-link, #nav_welcome,.btn_sessions {
-    color: var(--letras-color);
+.navbar-nav .nav-link,
+#nav_welcome,
+.btn_sessions {
+    color: var(--secondary-flan-color);
     font-weight: 400;
     font-size: 16px;
 }
-  
 
-#welcome_user{
-    color: var(--dark-grey);
+.dropdown-menu.show {
+    display: block;
+    right: 49px;
+    padding: 10px 0px;
 }
 
 .navbar-nav .nav-link:hover {
-    color: var(--secondary-flan-color);
+    color: var(--yellow-warning);
 }
 
-/* .navbar-toggler {
-    border: 1px solid white;
+.navbar-toggler {
+    border: 1px solid var(--letras-color);
 }
 
 .navbar-toggler-icon {
     filter: invert(1);
-} */
-
-.navbar-nav a {
-    color:var(--letras-color);
 }
-.navbar{
+.navbar {
     margin: 0;
     padding: 0;
     background-color: var(--azul-flan-color);
+}
+/* MENU */
+.custom-dropdown-menu {
+    background-color: var(--azul-flan-color);
+    border: 1px solid var(--yellow-warning);
+    border-radius: 4px;
+    min-width: 200px;
+    /* Puedes ajustar el tamaño */
+    position: absolute;
+    top: 100%;
+    /* Ajusta la posición del menú */
+    left: 0;
+    /* Ajusta la posición del menú */
+}
+
+.custom-dropdown-item {
+    color: var(--secondary-flan-color);
+}
+
+.custom-dropdown-item:hover {
+    background-color: var(--yellow-warning);
+    color: var(--dark-grey);
+}
+
+#welcome_user {
+    color: var(--dark-grey);
 }
 
 h1 {
@@ -61,45 +102,85 @@ h1 {
 /* CARDS */
 #card_flanes {
     margin: 0;
-    height: 400px;
+    height: 510px;
 }
 
-#card_flanes .card-img-top {
-    height: 70%; /* Ajusta la altura de la imagen dentro de la tarjeta */
-    object-fit: cover; /* Asegura que la imagen cubra el espacio */
+#card_flanes, .card-img-top {
+    height: 85%;
+    /* Ajusta la altura de la imagen dentro de la tarjeta */
+    object-fit: cover;
+    /* Asegura que la imagen cubra el espacio */
 }
+
 .card-title {
     text-align: center;
     font-weight: bold;
 }
+
 .card-text {
     text-align: justify;
 }
 
+.shadow-custom {
+    box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.shadow-custom:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen con sombra inicial del 15% y aclarado al 100% en hover */
+.img-hover {
+    filter: brightness(70%);
+    transition: filter 0.3s ease;
+}
+
+/* Aplicar el efecto de brillo al hacer hover en cualquier parte de la card */
+.shadow-custom:hover .img-hover {
+    filter: brightness(100%);
+}
+
+/* Estilo para hacer toda la card linkeable */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 /* LINEAS */
 hr {
-    border-top: 1px solid #313131;
+    border-top: 1px solid var(--letras-color);
 }
+
 #menu-line {
     border-top: 1px solid var(--letras-color);
 }
 
 /* FORMULARIO */
-form { /* caja de formulario*/
+form {
+    /* caja de formulario*/
     margin-top: 20px;
 }
-#img-form{ /* img col derecha*/
-    width: 60%;
+
+#img-movil {
+    max-width: 150px;
 }
-.custom-label{ /*clases de labels personalizados */
+
+
+.custom-label {
+    /*clases de labels personalizados */
     margin: 100px !important;
 }
-.form-control { /*clases de widgets personalizados */
+
+.form-control {
+    /*clases de widgets personalizados */
     width: 100%;
     height: 40px;
     box-sizing: border-box;
     background-color: #ffebe2;
 }
+
 textarea.form-control {
     resize: none;
     height: 25%
@@ -115,29 +196,95 @@ footer {
     text-align: center;
     background-color: var(--azul-flan-color);
     padding: 20px 0;
-    border-radius: 2px 2px 0 0;
     color: var(--letras-color);
     font-weight: 400;
     font-size: 15px;
 }
 
-/* MEDIAS QUERIES*/
+
+
+/* LOGIN */
+.rounded-card {
+    border-radius: 1rem;
+}
+
+.rounded-img {
+    border-radius: 1rem 0 0 1rem;
+    max-width: 100%;
+}
+
+.text-link {
+    color: #393f81;
+}
+
+.text-link:hover {
+    color: #ff6219;
+}
+
+/* MEDIAS QUERYS*/
+/* MAXIMAS - VERSION MOVIL */
+@media (max-width: 575.98px) {
+
+    /* navbar */
+    .custom-mx {
+        max-width: 95%;
+        padding: 1% 0;
+    }
+
+    .custom-mx-nav {
+        margin: 0;
+    }
+
+    main {
+        max-width: 97%;
+        margin-top: 2rem;
+    }
+
+    #img-movil {
+        max-width: 130px;
+        margin-top: 4%;
+    }
+
+    /* estilo menus desplegables */
+    .nav-link:hover {
+        background-color: var(--yellow-warning);
+        color: var(--dark-grey) !important;
+        padding-left: 0.2rem;
+    }
+}
 
 /* #card_flanes reduce la letra y elimina la altura de las cards*/
 @media (max-width: 991.98px) {
     #card_flanes {
-      height: auto !important;
-}
-.card-title,
-.card-text {
-  font-size: 0.875rem;
-}
+        height: auto !important;
+    }
+
+    .card-title,
+    .card-text {
+        font-size: 0.875rem;
+    }
 }
 
-/* espacio entre los botones iniciar sesion y registro */
-@media (max-width: 575.98px) {
-    .sm-margin {
-        margin-bottom: 0.5rem !important;
+/*MINIMAS */
+@media (min-width: 576px) {
+    .custom-mx {
+        margin-left: 3rem;
+        margin-right: 3rem;
     }
-  }
-  
+
+    .caja-form-reg {
+        margin: 0 11.2rem !important;
+    }
+
+    .caja-forms-login {
+        margin: 0 8.5rem !important;
+    }
+
+    .caja-forms-contact {
+        margin: 0 5.7rem !important;
+    }
+
+    .caja-forms-contact-card {
+        margin-bottom: 0.6rem !important;
+    }
+}

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+from datetime import timedelta
+
 
 
 
@@ -51,7 +53,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_auto_logout.middleware.auto_logout', #auto logout
+    #'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
+# logout si no hay algun request por el tiempo que se define en el idle_time.
+#AUTO_LOGOUT = {'IDLE_TIME': 10}  # logout after 10 minutes of downtime (10seg de pba)
+# Tiempo de expiración de la sesión en segundos
+#SESSION_EXPIRE_SECONDS = 10  # 10 segundos para pruebas, ajustar según sea necesario
+#SESSION_TIMEOUT_REDIRECT = '/contacto'
 #SESSION_COOKIE_AGE = 5
 #SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
@@ -69,6 +78,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # auto logout en templates
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -135,6 +146,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_REDIRECT_URL = "welcome"
-LOGOUT_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = 'login'
 
-
+AUTO_LOGOUT = {
+    'IDLE_TIME': 3800,
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+    'MESSAGE': 'Su sesión ha expirado. ingresa de nuevo para continuar.',
+}

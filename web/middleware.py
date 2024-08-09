@@ -1,21 +1,30 @@
-# middleware.py
-""" 
-import datetime
+""" # web/middleware.py
+
+from datetime import datetime, timedelta
 from django.conf import settings
-from django.contrib.auth import logout
-from django.utils.deprecation import MiddlewareMixin
+from django.contrib import messages
+from django.utils import timezone
+from django.shortcuts import redirect
+from django.urls import reverse
 
-class SessionIdleTimeoutMiddleware(MiddlewareMixin):
-    def process_request(self, request):
-        if not request.user.is_authenticated:
-            return
+class SessionTimeoutMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
 
-        current_datetime = datetime.datetime.now()
-        last_activity_str = request.session.get('last_activity', current_datetime.strftime('%Y-%m-%d %H:%M:%S'))
-        last_activity = datetime.datetime.strptime(last_activity_str, '%Y-%m-%d %H:%M:%S')
-        idle_time = (current_datetime - last_activity).total_seconds()
+    def __call__(self, request):
+        if request.user.is_authenticated:
+            current_time = timezone.now()
+            last_activity = request.session.get('last_activity')
 
-        if idle_time > settings.SESSION_IDLE_TIMEOUT:
-            logout(request)
-        else:
-            request.session['last_activity'] = current_datetime.strftime('%Y-%m-%d %H:%M:%S') """
+            if last_activity:
+                last_activity = datetime.fromisoformat(last_activity)
+                elapsed_time = current_time - last_activity
+                if elapsed_time > timedelta(seconds=settings.SESSION_EXPIRE_SECONDS):
+                    messages.add_message(request, messages.INFO, 'Your session has expired due to inactivity.')
+                    return redirect(reverse('logout'))
+
+            request.session['last_activity'] = current_time.isoformat()
+
+        response = self.get_response(request)
+        return response
+ """

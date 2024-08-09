@@ -51,6 +51,7 @@ def welcome(request):
     }
     return render(request, 'welcome.html', context)
 
+
 # AGREGAR USUARIO
 def registro_usuario(request):
     if request.method == 'POST':

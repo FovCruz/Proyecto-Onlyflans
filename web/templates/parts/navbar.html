@@ -1,39 +1,102 @@
 {% load static %}
-
-<nav class="navbar navbar-expand-sm navbar-dark my-1 py-1 px-1 rounded" style="border: 1px solid #5b60b5;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'index' %}">
-      <img src="{% static 'img/OnlyFlans.png' %}" alt="OnlyFlans Logo" class="img-fluid" style="max-width: 150px;">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg py-2 custom-mx-nav fixed-top">
+  <div class="container-fluid custom-mx d-flex align-items-center justify-content-between">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <hr id="menu-line" class="d-sm-none d-block w-100">
-      <div class="navbar-nav me-auto">
+    <!-- Navbar brand -->
+    <a class="navbar-brand m-0 p-0" href="{% url 'index' %}">
+      <img src="{% static 'img/OnlyFlans.png' %}" alt="OnlyFlans Logo" class="img-fluid" id="img-movil">
+    </a>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left links -->
+      <hr>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {% if user.is_authenticated %}
-        <a class="nav-link" href="{% url 'welcome' %}">Bienvenido</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'welcome' %}">Bienvenido</a>
+        </li>
         {% endif %}
-        <a class="nav-link" href="{% url 'index' %}">Inicio</a>
-        <a class="nav-link" href="{% url 'about' %}">Acerca</a>
-        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">Acerca</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+        </li>
+      </ul>
+      <hr>
+
+      <!-- Right elements (Visible in desktop, hidden initially in mobile) -->
+      <div class="d-none d-lg-flex align-items-center justify-content-end">
+        {% if user.is_authenticated %}
+        <p class="fs-6 text-capitalize text-white my-0 me-3">Bienvenid@ {{ user.get_username }}</p>
+
+        <div class="d-flex align-items-center ms-3 me-3">
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="40" alt="Avatar"
+              loading="lazy" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end custom-dropdown-menu" aria-labelledby="navbarDropdownMenuAvatar">
+            <li>
+              <a class="dropdown-item custom-dropdown-item" href="#">Mi perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item custom-dropdown-item" href="#">Configuración</a>
+            </li>
+          </ul>
+        </div>
+
+        <button type="button" class="btn btn-danger ms-3" onclick="window.location.href='{% url 'logout' %}';">
+          Cerrar Sesión
+        </button>
+
+        {% else %}
+        <button type="button" class="btn btn-success me-3" onclick="window.location.href='{% url 'login' %}';">
+          Iniciar Sesión
+        </button>
+        <button type="button" class="btn btn-warning" onclick="window.location.href='{% url 'registro_usuario' %}';">
+          Registrate
+        </button>
+        {% endif %}
       </div>
 
-      {% if user.is_authenticated %}
-      <hr id="menu-line" class="d-sm-none d-block w-100">
-      <div class="d-flex justify-content-center align-items-center">
-        <p class="fs-6 mb-0 sm-margin me-3 text-white text-capitalize">Bienvenid@ {{ user.get_username }}</p>
-        <a class="btn btn-danger btn-md sm-margin" href="{% url 'logout' %}">Cerrar Sesión</a>
+      <!-- Right elements (Visible when menu is expanded in mobile) -->
+      <div class="d-lg-none mt-3">
+        {% if user.is_authenticated %}
+        <div class="d-flex align-items-center justify-content-between">
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatarMobile"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="40" alt="Avatar"
+              loading="lazy" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-start custom-dropdown-menu" aria-labelledby="navbarDropdownMenuAvatarMobile">
+            <li>
+              <a class="dropdown-item custom-dropdown-item" href="#">Mi perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item custom-dropdown-item" href="#">Configuración</a>
+            </li>
+          </ul>
+          <a class="btn btn-danger btn-md ms-auto" href="{% url 'logout' %}">Cerrar Sesión</a>
+        </div>
+        
+        {% else %}
+        <a class="btn btn-warning btn-md me-2" href="{% url 'login' %}">Iniciar Sesión</a>
+        <a class="btn btn-success btn-md" href="{% url 'registro_usuario' %}">Registro</a>
+        {% endif %}
       </div>
-      {% else %}
-      <hr id="menu-line" class="d-sm-none d-block w-100">
-      <div class="navbar-nav">
-        <a class="btn_sessions btn btn-primary btn-md me-2 sm-margin" href="{% url 'login' %}">Iniciar Sesión</a>
-        <a class="btn_sessions btn btn-success btn-md me-2 sm-margin" href="{% url 'registro_usuario' %}">Registro</a>
-      </div>
-      {% endif %}
+      
+
     </div>
+    <!-- Collapsible wrapper -->
   </div>
 </nav>

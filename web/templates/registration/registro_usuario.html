@@ -6,41 +6,48 @@
 <h1>Registro de Usuarios</h1>
 <hr>
 
-<div class="row">
-    <div class="col-12 col-md-6 mb-3">
-        <form method="POST">
-            {% csrf_token %}
+<div class="row d-flex justify-content-center align-items-center">
+    <div class="col col-xl-10 caja-form-reg">
+        <div class="card rounded-card shadow-lg">
+            <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                    <img src="https://media.istockphoto.com/id/1281150061/vector/register-account-submit-access-login-password-username-internet-online-website-concept.jpg?s=612x612&w=0&k=20&c=9HWSuA9IaU4o-CK6fALBS5eaO1ubnsM08EOYwgbwGBo="
+                        alt="registration form" class="img-fluid rounded-img" />
+                </div>
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-2 p-lg-5 text-black">
+                        <form method="POST">
+                            {% csrf_token %}
 
-            <div class="form-group mb-3">
-                {{ form.username.label_tag }}
-                {{ form.username }}
-            </div>
+                            <div class="mb-3 text-start">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                            </div>
 
-            <div class="form-group">
-                {{ form.email.label_tag }}
-                {{ form.email }}
-            </div>
-            
-            <br>
-            <div class="form-group">
-                {{ form.password1.label_tag }}
-                {{ form.password1 }}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.password2.label_tag }}
-                {{ form.password2 }}
-            </div>
-            <button type="submit" class="btn btn-primary btn-azul">Enviar</button>
-        </form>
-    </div>
+                            <div class="mb-3 text-start">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                            </div>
+                            
+                            <div class="mb-3 text-start">
+                                {{ form.password1.label_tag }}
+                                {{ form.password1 }}
+                            </div>
 
-    <div class="col-12 col-md-6 d-none d-md-flex align-items-center justify-content-center">
-        <center>
-            <img id="img-form" class="img-fluid"
-                src="https://images.vexels.com/media/users/3/134904/isolated/preview/55500571b8176366dd4298b925235cb2-icono-de-soporte-de-contacto-3d.png?w=360"
-                alt="">
-        </center>
+                            <div class="mb-3 text-start">
+                                {{ form.password2.label_tag }}
+                                {{ form.password2 }}
+                            </div>
+
+                            <div class="pt-1 mb-4">
+                                <button type="submit" class="btn btn-dark btn-lg btn-block">Enviar</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
