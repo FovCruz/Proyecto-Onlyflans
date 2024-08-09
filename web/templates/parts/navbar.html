@@ -50,14 +50,20 @@
               <a class="dropdown-item custom-dropdown-item" href="#">Mi perfil</a>
             </li>
             <li>
-              <a class="dropdown-item custom-dropdown-item" href="#">Configuración</a>
-            </li>
+              <a class="dropdown-item custom-dropdown-item" href="/admin/">Configuración</a>
+          </li>      
           </ul>
         </div>
 
-        <button type="button" class="btn btn-danger ms-3" onclick="window.location.href='{% url 'logout' %}';">
-          Cerrar Sesión
+        <button type="button" class="btn btn-warning ms-3" onclick="window.location.href='{% url 'ver_carrito' %}';">
+          <i class="fas fa-shopping-cart"></i> Carrito
+          <span class="badge bg-secondary">{{ request.user.carrito.items.count }}</span>
         </button>
+
+        <button type="button" class="btn btn-danger ms-3" onclick="window.location.href='{% url 'logout' %}';">
+          <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </button>
+
 
         {% else %}
         <button type="button" class="btn btn-success me-3" onclick="window.location.href='{% url 'login' %}';">
@@ -78,23 +84,24 @@
             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="40" alt="Avatar"
               loading="lazy" />
           </a>
-          <ul class="dropdown-menu dropdown-menu-start custom-dropdown-menu" aria-labelledby="navbarDropdownMenuAvatarMobile">
+          <ul class="dropdown-menu dropdown-menu-start custom-dropdown-menu"
+            aria-labelledby="navbarDropdownMenuAvatarMobile">
             <li>
               <a class="dropdown-item custom-dropdown-item" href="#">Mi perfil</a>
             </li>
             <li>
-              <a class="dropdown-item custom-dropdown-item" href="#">Configuración</a>
-            </li>
+              <a class="dropdown-item custom-dropdown-item" href="/admin/">Configuración</a>
+          </li>          
           </ul>
           <a class="btn btn-danger btn-md ms-auto" href="{% url 'logout' %}">Cerrar Sesión</a>
         </div>
-        
+
         {% else %}
         <a class="btn btn-warning btn-md me-2" href="{% url 'login' %}">Iniciar Sesión</a>
         <a class="btn btn-success btn-md" href="{% url 'registro_usuario' %}">Registro</a>
         {% endif %}
       </div>
-      
+
 
     </div>
     <!-- Collapsible wrapper -->

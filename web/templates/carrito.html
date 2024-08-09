@@ -1,0 +1,74 @@
+{% extends "parts/base.html" %}
+{% load custom_filters %}
+
+{% block title %}Carrito{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Carrito</h1>
+    <div class="row justify-content-center">
+        {% if empty_cart %}
+        <div class="col-md-8 text-center">
+            <p class="fs-4">Tu carrito está vacío, ve y llénalo <a href="{% url 'welcome' %}">aquí</a></p>
+            <a href="{% url 'welcome' %}" class="btn btn-success me-2">Ver Productos</a>
+            <a href="{% url 'index' %}" class="btn btn-primary">Ir al Home</a>
+        </div>
+        {% else %}
+        <div class="col-md-12">
+            <table class="table table-hover table-bordered align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in carrito.items.all %}
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="{{ item.producto.image_url }}" alt="{{ item.producto.name }}" class="img-thumbnail me-3" width="60">
+                            <div class="text-start">
+                                <strong>{{ item.producto.name }}</strong><br>
+
+                                <span class="text-muted d-block">
+                                    {{ item.producto.description }}&nbsp;<a href="{% url 'ver_producto' item.producto.slug %}" class="text-muted small">...ver más</a>
+                                </span>
+                                
+                                <a href="{% url 'ver_producto' item.producto.slug %}" class="text-muted small"></a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <a href="{% url 'actualizar_item' item.id 'aumentar' %}" class="btn btn-success btn-sm me-1">+</a>
+                                <span>{{ item.cantidad }}</span>
+                                <a href="{% url 'actualizar_item' item.id 'disminuir' %}" class="btn btn-danger btn-sm ms-1">-</a>
+                            </div>
+                        </td>
+                        <td>{{ item.subtotal|clp }}</td>
+                        <td>
+                            <a href="{% url 'ver_producto' item.producto.slug %}" class="btn btn-primary btn-sm w-100">Ver Detalle</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12 d-flex justify-content-end mt-4">
+            <div class="me-2">
+                <h3>Total: {{ carrito.total|clp }}</h3>
+            </div>
+        </div>
+        <div class="col-md-12 d-flex justify-content-end">
+            <div class="me-2">
+                <a href="#" class="btn btn-primary mb-3">Finalizar Compra</a>
+            </div>
+            <div>
+                <a href="{% url 'welcome' %}" class="btn btn-warning mb-3">Continuar Comprando</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

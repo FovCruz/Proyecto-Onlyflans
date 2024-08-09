@@ -9,7 +9,7 @@ from .models import Flan, ContactForm,UsuarioForm
 #REGISTRO PERSONALIZADO (vista desde el panel "Productos (Flanes)" )
 @admin.register(Flan)
 class FlanAdmin(admin.ModelAdmin):
-    list_display = ('name','description','slug','is_private')
+    list_display = ('name','description','slug','precio','is_private')
     search_fields = ('name','name')
     list_filter = ('is_private','name')
 

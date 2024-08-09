@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 import uuid #importacion de estándar de generación de identificadores únicos
 from django.contrib.auth.hashers import make_password,check_password #encripta y chequea las passwords
-
+from django.contrib.auth.models import User
 
 #CLASE PARA LA CREACION DE PRODUCTOS (flan)
 class Flan(models.Model):
@@ -12,6 +12,7 @@ class Flan(models.Model):
     image_url = models.URLField(default='https://eurelec.pt/img/noimage.jpg')
     slug = models.SlugField(unique=True, blank=True)
     is_private = models.BooleanField(default=False)
+    precio = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)  # Nuevo campo
 
 
     class Meta:
@@ -70,3 +71,34 @@ class UsuarioForm (models.Model):
     #metodo para comparar clave ingresada por el usuario contra la registrada en la bd
     def check_clave (self, raw_password):
         return check_password (raw_password, self.clave)
+    
+
+#MODELO DE PRODUCTOS DE PRUEBA 
+class Producto(models.Model):
+    nombre = models.CharField(max_length=200)
+    descripcion = models.TextField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    #imagen = models.ImageField(upload_to='productos/')
+    image_url = models.URLField(default='https://eurelec.pt/img/noimage.jpg')
+
+
+    def __str__(self):
+        return self.nombre
+    
+class Carrito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return f"Carrito de {self.usuario.username}"
+
+class ItemCarrito(models.Model):
+    producto = models.ForeignKey(Flan, on_delete=models.CASCADE)  # Cambia Producto a Flan
+    carrito = models.ForeignKey(Carrito, related_name='items', on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+
+    def subtotal(self):
+        return self.cantidad * self.producto.precio
+
+    def __str__(self):
+        return f"{self.producto.name} x {self.cantidad}"

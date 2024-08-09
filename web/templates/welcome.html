@@ -1,4 +1,5 @@
 {% extends "parts/base.html" %}
+{% load custom_filters %}
 
 {% block title %}Bienvenid@ {{ user.get_username }}{% endblock %}
 
@@ -10,32 +11,39 @@
     <button class="btn btn-outline-light">Descubrir más</button>
 </div>
 
-
-
 <h1>Productos Preferenciales</h1>
 <hr>
 <div class="row">
     {% for flan in flanes %}
     <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-5">
-        <a href="{% url 'registro_usuario' %}" class="card-link">
-            <div class="card shadow-custom" id="card_flanes">
-                <img src="{{ flan.image_url }}" class="card-img-top img-hover" alt="{{ flan.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ flan.name }}</h5>
-                    <p class="card-text">{{ flan.description }}</p>
-    
-                    <button type="button" class="btn btn-warning mb-3">
+        <div class="card shadow-custom" id="card_flanes">
+            <img src="{{ flan.image_url }}" class="card-img-top img-hover" alt="{{ flan.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ flan.name }}</h5>
+                <p class="card-text">{{ flan.description }}</p>
+
+                <!-- Mostrar el precio formateado como CLP -->
+                <p class="card-text"><strong>Precio: </strong>{{ flan.precio|clp }}</p>
+
+                <div class="d-flex justify-content-between">
+                    <!-- Enlace para ver el detalle del producto -->
+                    <a href="{% url 'ver_producto' flan.slug %}" class="btn btn-primary">
+                        Ver Detalle
+                    </a>
+
+                    <!-- Enlace que agrega el producto al carrito usando el slug -->
+                    <a href="{% url 'agregar_al_carrito' flan.slug %}" class="btn btn-warning">
                         Comprar
-                    </button>
-    
-                    <p class="card-text">
-                        <small class="text-body-secondary">Last updated 3 mins ago</small>
-                    </p>
+                    </a>
                 </div>
+
+                <p class="card-text">
+                    <small class="text-body-secondary">Last updated 3 mins ago</small>
+                </p>
             </div>
-        </a>
+        </div>
     </div>
-    
     {% endfor %}
 </div>
+
 {% endblock %}
