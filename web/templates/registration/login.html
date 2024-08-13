@@ -3,20 +3,20 @@
 {% block title %}Iniciar Sesión{% endblock %}
 
 {% block content %}
-<h1>Iniciar Sesión</h1>
 <hr>
 
 <div class="row d-flex justify-content-center align-items-center">
     <div class="col col-xl-10 caja-forms-login">
         <div class="card rounded-card shadow-lg">
+            <h1>Iniciar Sesión</h1>
             <div class="row g-0">
                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                     <img src="https://media.istockphoto.com/id/1281150061/vector/register-account-submit-access-login-password-username-internet-online-website-concept.jpg?s=612x612&w=0&k=20&c=9HWSuA9IaU4o-CK6fALBS5eaO1ubnsM08EOYwgbwGBo="
                         alt="login form" class="img-fluid rounded-img" />
                 </div>
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                    <div class="card-body p-2 p-lg-5 text-black">
-                        <form method="post">
+                    <div class="card-body p-2 px-5 text-black">
+                        <form method="post" class="mb-5">
                             {% csrf_token %}
                             <div class="mb-3 text-start">
                                 <label for="id_username" class="form-label">Usuario:</label>
@@ -33,7 +33,7 @@
                             </div>
 
                             <a class="small text-muted" href="#!">Olvidaste la contraseña?</a>
-                            <p class="mb-5 pb-lg-2 text-muted">Aún no tienes una cuenta? <a href="{% url 'registro_usuario' %}" class="text-link">Registrate Aquí</a></p>
+                            <p class="mb-2 pb-lg-2 text-muted">Aún no tienes una cuenta? <a href="{% url 'registro_usuario' %}" class="text-link">Registrate Aquí</a></p>
                             <a href="{% url 'index' %}" class="small text-muted">Inicio</a>                            
                             <a href="{% url 'about' %}" class="small text-muted">Productos</a>
                         </form>

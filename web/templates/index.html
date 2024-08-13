@@ -1,5 +1,5 @@
 {% extends "parts/base.html" %}
-
+{% load custom_filters %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -9,15 +9,26 @@
 <div class="row">
     {% for flan in flanes %}
     <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-5">
-        <div class="card" id="card_flanes">
-            <img src="{{ flan.image_url }}" class="card-img-top" alt="{{ flan.name }}">
+        <div class="card shadow-custom" id="card_flanes">
+            <img src="{{ flan.image_url }}" class="card-img-top img-hover" alt="{{ flan.name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ flan.name }}</h5>
                 <p class="card-text">{{ flan.description }}</p>
 
-                <button type="button" class="btn btn-warning mb-3" onclick="window.location.href='{% url 'registro_usuario' %}';">
-                    Comprar
-                  </button>
+                <!-- Mostrar el precio formateado como CLP -->
+                <p class="card-text"><strong>Precio: </strong>{{ flan.precio|clp }}</p>
+
+                <div class="d-flex justify-content-between">
+                    <!-- Enlace para ver el detalle del producto -->
+                    <a href="{% url 'ver_producto' flan.slug %}" class="btn btn-primary">
+                        Ver Detalle
+                    </a>
+
+                    <!-- Enlace que agrega el producto al carrito usando el slug -->
+                    <a href="{% url 'registro_usuario' %}" class="btn btn-warning">
+                        Comprar
+                    </a>
+                </div>
 
                 <p class="card-text">
                     <small class="text-body-secondary">Last updated 3 mins ago</small>

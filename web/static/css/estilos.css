@@ -48,7 +48,6 @@ header {
     top: 62px;
     padding: 10px 0px;
     border: 2px solid var(--yellow-warning);
-
 }
 
 .navbar-nav .nav-link:hover {
@@ -228,6 +227,18 @@ footer {
 /* MAXIMAS - VERSION MOVIL */
 @media (max-width: 575.98px) {
 
+    h1 {
+        font-size: 30px;
+        margin: 0 2rem;
+    }
+    .rm-borde{
+        padding: 1px;
+    }
+
+    .custom-dropdown-menu {
+        top: 335px;
+    }
+
     /* navbar */
     .custom-mx {
         max-width: 95%;
@@ -256,18 +267,6 @@ footer {
     }
 }
 
-/* #card_flanes reduce la letra y elimina la altura de las cards*/
-@media (max-width: 991.98px) {
-    #card_flanes {
-        height: auto !important;
-    }
-
-    .card-title,
-    .card-text {
-        font-size: 0.875rem;
-    }
-}
-
 /*MINIMAS */
 @media (min-width: 576px) {
     .custom-mx {
@@ -288,6 +287,17 @@ footer {
     }
 
     .caja-forms-contact-card {
-        margin-bottom: 0.6rem !important;
+        margin-bottom: 1.2rem !important;
+    }
+}
+/* #card_flanes reduce la letra y elimina la altura de las cards*/
+@media (max-width: 991.98px) {
+    #card_flanes {
+        height: auto !important;
+    }
+
+    .card-title,
+    .card-text {
+        font-size: 0.875rem;
     }
 }
