@@ -149,7 +149,7 @@ LOGIN_REDIRECT_URL = "welcome"
 LOGOUT_REDIRECT_URL = 'login'
 
 AUTO_LOGOUT = {
-    'IDLE_TIME': 10,
+    'IDLE_TIME': 600,
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
     'MESSAGE': 'Su sesión ha expirado. ingresa de nuevo para continuar.',
 }
